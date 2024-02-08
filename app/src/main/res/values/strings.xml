@@ -3,5 +3,11 @@
 
     <!-- Home -->
     <string name="home_title">Enter Phrase</string>
-    <string name="home_phrase_input_clear_content_desc">Enter Phrase to be add to </string>
+    <string name="home_phrase_input_clear_content_desc">Clear Phrase</string>
+
+    <!-- Detail -->
+
+    <!-- Common -->
+    <string name="back_botton_content_desc">Navigate back</string>
+
 </resources>

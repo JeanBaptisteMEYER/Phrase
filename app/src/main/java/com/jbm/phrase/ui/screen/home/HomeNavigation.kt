@@ -1,4 +1,4 @@
-package com.jbm.hellocompose.ui.screen.home
+package com.jbm.phrase.ui.screen.home
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -9,8 +9,12 @@ const val HOME_ROUTE = "home_route"
 
 fun NavController.navigateToHome(navOptions: NavOptions? = null) = navigate(HOME_ROUTE, navOptions)
 
-fun NavGraphBuilder.homeScreen() {
+fun NavGraphBuilder.homeScreen(
+    onDetailClick: (String) -> Unit
+) {
     composable(route = HOME_ROUTE) {
-        HomeRoute()
+        HomeRoute(
+            onDetailClick = onDetailClick
+        )
     }
 }

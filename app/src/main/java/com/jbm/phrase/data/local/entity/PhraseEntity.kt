@@ -12,6 +12,7 @@ data class PhraseEntity (
     val lastAdded: Date
 )
 
-fun PhraseEntity.toDomain() = PhraseDomain(phrase = this.phrase, lastAdded = this.lastAdded)
+fun PhraseEntity.toDomain() =
+    PhraseDomain(id = this.id, phrase = this.phrase, lastAdded = this.lastAdded)
 
-fun List<PhraseEntity>.toDomain() = map { PhraseDomain(phrase = it.phrase, lastAdded = it.lastAdded) }
+fun List<PhraseEntity>.toDomain() = map { it.toDomain() }

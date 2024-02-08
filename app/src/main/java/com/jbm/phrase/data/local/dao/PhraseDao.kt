@@ -11,10 +11,13 @@ import com.jbm.phrase.data.local.entity.PhraseEntity
 interface PhraseDao {
     @Query("SELECT * FROM phrases")
     fun getAllPhrase(): List<PhraseEntity>
-    
+
+    @Query("SELECT * FROM phrases WHERE id=:id")
+    fun getPhraseById(id: String): PhraseEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPhrase(phraseEntity: PhraseEntity)
-    
+
     @Delete
     fun deletePhrase(phraseEntity: PhraseEntity)
 }

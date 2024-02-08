@@ -10,6 +10,7 @@ class SavePhraseUseCase @Inject constructor(private val phraseRepository: Phrase
     suspend operator fun invoke(phrase: String) =
         phraseRepository.insertPhrase(
             phraseEntity = PhraseDomain(
+                id = -1,
                 phrase = phrase,
                 lastAdded = Date()
             ).toEntity()

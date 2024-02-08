@@ -1,11 +1,14 @@
-package com.jbm.hellocompose.ui.screen.home
+package com.jbm.phrase.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,6 +17,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,12 +42,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jbm.phrase.R
-import com.jbm.phrase.ui.screen.home.HomeViewModel
-import com.jbm.phrase.ui.screen.home.model.HomeUiState
+import com.jbm.phrase.domain.model.PhraseDomain
+import java.util.Date
 
 @Composable
 fun HomeRoute(
     modifier: Modifier = Modifier,
+    onDetailClick: (String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.homeUiState.collectAsStateWithLifecycle()
@@ -57,6 +62,7 @@ fun HomeRoute(
         modifier,
         onPhraseInputChanged = viewModel::onPhraseInputChanged,
         onPhraseSavedTriggered = viewModel::onPhraseSavedTriggered,
+        onPhraseItemClicked = onDetailClick,
         phraseInput = phraseInput,
         uiState = uiState
     )
@@ -67,21 +73,40 @@ private fun HomeScreen(
     modifier: Modifier = Modifier,
     onPhraseInputChanged: (String) -> Unit = {},
     onPhraseSavedTriggered: (String) -> Unit = {},
+    onPhraseItemClicked: (String) -> Unit = {},
     phraseInput: String,
     uiState: HomeUiState
 ) {
-    
-    Column(modifier = modifier) {
-        Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
-        PhraseInput(
-            onPhraseInputChanged = onPhraseInputChanged,
-            onPhraseSavedTriggered = onPhraseSavedTriggered,
-            phraseInput = phraseInput,
-        )
-        PhraseList(
-            uiState = uiState
-        )
+
+    when (uiState) {
+        is HomeUiState.Success -> {
+            Column(modifier = modifier) {
+                Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
+                PhraseInput(
+                    onPhraseInputChanged = onPhraseInputChanged,
+                    onPhraseSavedTriggered = onPhraseSavedTriggered,
+                    phraseInput = phraseInput,
+                )
+                PhraseList(
+                    onPhraseItemClicked = onPhraseItemClicked,
+                    uiState = uiState
+                )
+            }
+        }
+
+        HomeUiState.Error -> {
+            Text(text = "Error")
+        }
+
+        HomeUiState.Loading -> {
+            CircularProgressIndicator(
+                modifier = Modifier.width(64.dp),
+                color = MaterialTheme.colorScheme.secondary,
+                trackColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        }
     }
+
 }
 
 @Composable
@@ -150,24 +175,38 @@ private fun PhraseInput(
 
 @Composable
 fun PhraseList(
-    modifier: Modifier = Modifier,
     onPhraseItemClicked: (String) -> Unit = {},
     uiState: HomeUiState
-    )
-{
-    if (uiState is HomeUiState.ListReady) {
+) {
+    if (uiState is HomeUiState.Success) {
         LazyColumn {
             items(uiState.phases) { phrase ->
-                Text(
-                    text = phrase,
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier
-                        .padding(vertical = 16.dp)
-                        .fillMaxWidth()
-                        .wrapContentHeight()
+                PhraseListItem(
+                    onPhraseItemClicked = onPhraseItemClicked,
+                    phraseDomain = phrase
                 )
             }
         }
+    }
+}
+
+@Composable
+fun PhraseListItem(
+    onPhraseItemClicked: (String) -> Unit = {},
+    phraseDomain: PhraseDomain
+) {
+    Row {
+        Text(
+            text = phraseDomain.phrase,
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .clickable {
+                    onPhraseItemClicked(phraseDomain.id.toString())
+                }
+        )
     }
 }
 
@@ -185,7 +224,13 @@ fun PhraseInputPreview() {
 @Composable
 fun PhraseListPreview() {
     PhraseList(
-        uiState = HomeUiState.ListReady(listOf("coucou", "coucou2", "coucou3", "coucou3", "coucou3"))
+        uiState = HomeUiState.Success(
+            listOf(
+                PhraseDomain(1, "Hello", Date()),
+                PhraseDomain(2, "Hello this is a phrase", Date()),
+                PhraseDomain(3, "Hello another one", Date())
+            )
+        )
     )
 }
 

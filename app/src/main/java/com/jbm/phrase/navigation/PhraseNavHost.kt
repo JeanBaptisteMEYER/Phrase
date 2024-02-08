@@ -4,8 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.jbm.hellocompose.ui.screen.home.HOME_ROUTE
-import com.jbm.hellocompose.ui.screen.home.homeScreen
+import com.jbm.phrase.ui.screen.detail.detailScreen
+import com.jbm.phrase.ui.screen.detail.navigateToDetail
+import com.jbm.phrase.ui.screen.home.HOME_ROUTE
+import com.jbm.phrase.ui.screen.home.homeScreen
 
 @Composable
 fun PhraseNavHost(
@@ -18,6 +20,11 @@ fun PhraseNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        homeScreen()
+        homeScreen(
+            onDetailClick = navController::navigateToDetail
+        )
+        detailScreen(
+            onBackClick = navController::popBackStack
+        )
     }
 }
