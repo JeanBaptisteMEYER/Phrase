@@ -1,10 +1,11 @@
 package com.jbm.phrase.ui.screen.home
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbm.phrase.domain.FetchAllPhraseUseCase
-import com.jbm.phrase.domain.SavePhraseUseCase
+import com.jbm.phrase.domain.usecase.FetchAllPhraseUseCase
+import com.jbm.phrase.domain.usecase.SavePhraseUseCase
 import com.jbm.phrase.ui.screen.home.model.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,6 +37,7 @@ class HomeViewModel @Inject constructor(
     
     fun getAllPhrase() = viewModelScope.launch {
         val all = fetchAllPhraseUseCase()
+        Log.d("coucou", "getAllPhrase: $all")
         _homeUiState.update { HomeUiState.ListReady(all.map { it.phrase }) }
     }
     
