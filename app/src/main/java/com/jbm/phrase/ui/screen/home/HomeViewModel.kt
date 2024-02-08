@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jbm.phrase.domain.usecase.FetchAllPhraseUseCase
 import com.jbm.phrase.domain.usecase.SavePhraseUseCase
+import com.jbm.phrase.extention.trimEmptyLines
 import com.jbm.phrase.ui.screen.home.model.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,7 +39,9 @@ class HomeViewModel @Inject constructor(
     fun getAllPhrase() = viewModelScope.launch {
         val all = fetchAllPhraseUseCase()
         Log.d("coucou", "getAllPhrase: $all")
-        _homeUiState.update { HomeUiState.ListReady(all.map { it.phrase }) }
+        _homeUiState.update {
+            HomeUiState.ListReady(all.sortedByDescending { it.lastAdded }.map { it.phrase })
+        }
     }
     
     fun onPhraseInputChanged(phrase: String) {
@@ -46,7 +49,7 @@ class HomeViewModel @Inject constructor(
     }
     
     fun onPhraseSavedTriggered(phrase: String) = viewModelScope.launch {
-        savePhraseUseCase(phrase)
+        savePhraseUseCase(phrase.trimEmptyLines())
         savedStateHandle[PHRASE_INPUT] = ""
         getAllPhrase()
     }

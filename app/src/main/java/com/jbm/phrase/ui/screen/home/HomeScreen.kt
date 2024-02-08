@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jbm.phrase.R
-import com.jbm.phrase.extention.trimEmptyLines
 import com.jbm.phrase.ui.screen.home.HomeViewModel
 import com.jbm.phrase.ui.screen.home.model.HomeUiState
 
@@ -137,8 +136,8 @@ private fun PhraseInput(
             imeAction = ImeAction.Done,
         ),
         keyboardActions = KeyboardActions(
-            onSearch = {
-                onPhraseSavedTriggered(phraseInput.trimEmptyLines())
+            onDone = {
+                onPhraseSavedTriggered(phraseInput)
             },
         ),
         maxLines = 1,
