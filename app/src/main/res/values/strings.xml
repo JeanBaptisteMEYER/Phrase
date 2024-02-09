@@ -10,4 +10,8 @@
     <!-- Common -->
     <string name="back_botton_content_desc">Navigate back</string>
 
+    <!-- Single line Widget -->
+    <string name="single_line_appwidget_description">A simple single line widget with marquee ellipsis</string>
+    <string name="single_line_preview_text">Keep pushing</string>
+
 </resources>

@@ -1,0 +1,27 @@
+// Execute >extension.generateDbmlGraph to generate diagram preview
+
+Table phrase {
+  id integer [primary key]
+  phrase text
+  created_at timestamp 
+}
+
+Table widget {
+  id integer [primary key]
+  phrase_id integer
+  style_id integer
+  created_at timestamp
+}
+
+Table widget_style {
+  id integer [primary key]
+  font_style text
+  font_size text
+  font_color text
+  widget_background_color text
+  widget_frame text
+  created_at timestamp
+}
+
+Ref: widget.phrase_id < phrase.id // TODO check if correct
+Ref: widget.style_id < widget_style.id // TODO check if correct

@@ -6,7 +6,8 @@ import java.util.Date
 data class PhraseDomain (
     val id: Int,
     val phrase: String,
-    val lastAdded: Date
+    val createdAt: Date
 )
 
-fun PhraseDomain.toEntity() : PhraseEntity = PhraseEntity(phrase = this.phrase, lastAdded = this.lastAdded)
+fun PhraseDomain.toEntity(): PhraseEntity =
+    PhraseEntity(phrase = this.phrase, createdAt = this.createdAt)

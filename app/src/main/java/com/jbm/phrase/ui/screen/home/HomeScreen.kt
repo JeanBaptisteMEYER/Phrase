@@ -46,14 +46,14 @@ import com.jbm.phrase.domain.model.PhraseDomain
 import java.util.Date
 
 @Composable
-fun HomeRoute(
+fun HomeDestination(
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.homeUiState.collectAsStateWithLifecycle()
     val phraseInput by viewModel.phraseInput.collectAsStateWithLifecycle()
-    
+
     LaunchedEffect(Unit) {
         viewModel.getAllPhrase()
     }
@@ -180,7 +180,7 @@ fun PhraseList(
 ) {
     if (uiState is HomeUiState.Success) {
         LazyColumn {
-            items(uiState.phases) { phrase ->
+            items(uiState.phrases) { phrase ->
                 PhraseListItem(
                     onPhraseItemClicked = onPhraseItemClicked,
                     phraseDomain = phrase
@@ -200,7 +200,7 @@ fun PhraseListItem(
             text = phraseDomain.phrase,
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier
-                .padding(8.dp)
+                .padding(16.dp)
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .clickable {
@@ -216,7 +216,7 @@ fun PhraseInputPreview() {
     PhraseInput(
         onPhraseInputChanged = { },
         onPhraseSavedTriggered = { },
-        phraseInput = "coucou"
+        phraseInput = "New Phrase"
     )
 }
 

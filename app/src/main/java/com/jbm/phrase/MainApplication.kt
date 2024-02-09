@@ -1,4 +1,4 @@
-package com.jbm.phrase.application
+package com.jbm.phrase
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

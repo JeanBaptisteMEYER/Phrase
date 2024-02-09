@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="80dp"
+    android:minHeight="40dp"
+    android:updatePeriodMillis="100000"
+    android:description="@string/single_line_appwidget_description"
+    android:resizeMode="horizontal"
+    android:configure="com.jbm.phrase.WidgetConfigurationActivity"
+    android:widgetCategory="home_screen|keyguard"
+    android:widgetFeatures="reconfigurable">
+</appwidget-provider>

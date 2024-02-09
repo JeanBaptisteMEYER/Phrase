@@ -33,7 +33,7 @@ fun NavGraphBuilder.detailScreen(
             navArgument(PHRASE_ID_ARG) { type = NavType.StringType },
         ),
     ) { backStackEntry ->
-        DetailRoute(
+        DetailDestination(
             onBackClick = onBackClick,
             phraseId = checkNotNull(backStackEntry.arguments?.getString(PHRASE_ID_ARG))
         )

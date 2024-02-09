@@ -2,7 +2,7 @@ package com.jbm.phrase.ui.screen.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbm.phrase.domain.usecase.GetPhraseByIdUseCase
+import com.jbm.phrase.domain.repository.PhraseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val getPhraseByIdUseCase: GetPhraseByIdUseCase
+    private val phraseRepository: PhraseRepository
 ) : ViewModel() {
 
     //=================================================================
@@ -29,19 +29,20 @@ class DetailViewModel @Inject constructor(
     //=================================================================
 
     fun getPhrase(phasesId: String) = viewModelScope.launch {
-        val phrase = getPhraseByIdUseCase(phasesId)
         val mockSuggestionList = listOf(
-            "Coucou cest moi",
+            "Cest moi",
             "Cest encore moi",
             "Another one"
         )
-        
-        _detailUiState.update {
-            phrase?.let {
-                DetailUiState.Success(it, mockSuggestionList)
-            } ?: run {
-                DetailUiState.Error
+
+        phraseRepository.getPhraseById(phasesId)
+            .onSuccess { phrase ->
+                _detailUiState.update {
+                    DetailUiState.Success(phrase, mockSuggestionList)
+                }
             }
-        }
+            .onFailure {
+                _detailUiState.update { DetailUiState.Error }
+            }
     }
 }

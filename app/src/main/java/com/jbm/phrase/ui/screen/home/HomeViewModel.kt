@@ -3,8 +3,7 @@ package com.jbm.phrase.ui.screen.home
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbm.phrase.domain.usecase.FetchAllPhraseUseCase
-import com.jbm.phrase.domain.usecase.SavePhraseUseCase
+import com.jbm.phrase.domain.repository.PhraseRepository
 import com.jbm.phrase.extention.trimEmptyLines
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val savePhraseUseCase: SavePhraseUseCase,
-    private val fetchAllPhraseUseCase: FetchAllPhraseUseCase
+    private val phraseRepository: PhraseRepository
 ): ViewModel() {
     
     //=================================================================
@@ -35,18 +33,18 @@ class HomeViewModel @Inject constructor(
     //=================================================================
     
     fun getAllPhrase() = viewModelScope.launch {
-        val all = fetchAllPhraseUseCase()
+        val phrases = phraseRepository.getAllPhrases()
         _homeUiState.update {
-            HomeUiState.Success(all.sortedByDescending { it.lastAdded })
+            HomeUiState.Success(phrases.sortedByDescending { it.createdAt })
         }
     }
 
     fun onPhraseInputChanged(phrase: String) {
         savedStateHandle[PHRASE_INPUT] = phrase
     }
-
+    
     fun onPhraseSavedTriggered(phrase: String) = viewModelScope.launch {
-        savePhraseUseCase(phrase.trimEmptyLines())
+        phraseRepository.insertPhrase(phrase.trimEmptyLines())
         savedStateHandle[PHRASE_INPUT] = ""
         getAllPhrase()
     }

@@ -13,7 +13,7 @@ fun NavGraphBuilder.homeScreen(
     onDetailClick: (String) -> Unit
 ) {
     composable(route = HOME_ROUTE) {
-        HomeRoute(
+        HomeDestination(
             onDetailClick = onDetailClick
         )
     }

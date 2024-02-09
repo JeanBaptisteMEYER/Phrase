@@ -34,7 +34,7 @@ import com.jbm.phrase.domain.model.PhraseDomain
 import java.util.Date
 
 @Composable
-fun DetailRoute(
+fun DetailDestination(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
     phraseId: String,
@@ -144,7 +144,7 @@ private fun DetailToolbar(
                 style = MaterialTheme.typography.titleLarge,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                text = uiState.phase.phrase
+                text = uiState.phrase.phrase
             )
         }
     }
@@ -158,7 +158,7 @@ fun DetailScreenPreview() {
         uiState = DetailUiState.Success(
             PhraseDomain(1, "This is my phrase", Date()),
             listOf(
-                "Coucou cest moi",
+                "Cest moi",
                 "C'est encore moi",
                 "Another one"
             )

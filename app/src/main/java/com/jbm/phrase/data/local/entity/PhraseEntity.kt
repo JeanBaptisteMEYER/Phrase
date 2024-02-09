@@ -5,14 +5,14 @@ import androidx.room.PrimaryKey
 import com.jbm.phrase.domain.model.PhraseDomain
 import java.util.Date
 
-@Entity(tableName = "phrases")
+@Entity(tableName = "phrase")
 data class PhraseEntity (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val phrase: String,
-    val lastAdded: Date
+    val createdAt: Date
 )
 
 fun PhraseEntity.toDomain() =
-    PhraseDomain(id = this.id, phrase = this.phrase, lastAdded = this.lastAdded)
+    PhraseDomain(id = this.id, phrase = this.phrase, createdAt = this.createdAt)
 
 fun List<PhraseEntity>.toDomain() = map { it.toDomain() }

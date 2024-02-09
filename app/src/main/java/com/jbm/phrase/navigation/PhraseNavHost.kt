@@ -8,6 +8,7 @@ import com.jbm.phrase.ui.screen.detail.detailScreen
 import com.jbm.phrase.ui.screen.detail.navigateToDetail
 import com.jbm.phrase.ui.screen.home.HOME_ROUTE
 import com.jbm.phrase.ui.screen.home.homeScreen
+import com.jbm.phrase.ui.screen.widgetsetup.selectPhraseScreen
 
 @Composable
 fun PhraseNavHost(
@@ -26,5 +27,6 @@ fun PhraseNavHost(
         detailScreen(
             onBackClick = navController::popBackStack
         )
+        selectPhraseScreen()
     }
 }

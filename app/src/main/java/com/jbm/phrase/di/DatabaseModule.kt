@@ -3,6 +3,7 @@ package com.jbm.phrase.di
 import android.content.Context
 import androidx.room.Room
 import com.jbm.phrase.data.local.dao.PhraseDao
+import com.jbm.phrase.data.local.dao.WidgetDao
 import com.jbm.phrase.data.local.database.MainDatabase
 import dagger.Module
 import dagger.Provides
@@ -23,9 +24,14 @@ class DatabaseModule {
             "PhraseMainDatabase"
         ).build()
     }
-    
+
     @Provides
     fun providePhraseDao(db: MainDatabase): PhraseDao {
         return db.phraseDao()
+    }
+
+    @Provides
+    fun provideWidgetDao(db: MainDatabase): WidgetDao {
+        return db.widgetDao()
     }
 }
