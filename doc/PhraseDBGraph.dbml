@@ -16,9 +16,9 @@ Table widget {
 Table widget_style {
   id integer [primary key]
   font_style text
-  font_size text
-  font_color text
-  widget_background_color text
+  font_size integer
+  font_color integer
+  widget_background_color integer
   widget_frame text
   created_at timestamp
 }

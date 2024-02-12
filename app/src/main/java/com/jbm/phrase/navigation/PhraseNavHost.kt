@@ -8,7 +8,9 @@ import com.jbm.phrase.ui.screen.detail.detailScreen
 import com.jbm.phrase.ui.screen.detail.navigateToDetail
 import com.jbm.phrase.ui.screen.home.HOME_ROUTE
 import com.jbm.phrase.ui.screen.home.homeScreen
-import com.jbm.phrase.ui.screen.widgetsetup.selectPhraseScreen
+import com.jbm.phrase.ui.screen.widgetsetup.widgetSetupGraph
+
+val URL_CHARACTER_ENCODING: String = Charsets.UTF_8.name()
 
 @Composable
 fun PhraseNavHost(
@@ -27,6 +29,8 @@ fun PhraseNavHost(
         detailScreen(
             onBackClick = navController::popBackStack
         )
-        selectPhraseScreen()
+        widgetSetupGraph(
+            { }
+        )
     }
 }

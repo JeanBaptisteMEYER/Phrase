@@ -6,11 +6,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.jbm.phrase.navigation.URL_CHARACTER_ENCODING
 import java.net.URLEncoder
 
 const val DETAIL_ROUTE = "detail_route"
-
-private val URL_CHARACTER_ENCODING = Charsets.UTF_8.name()
 
 @VisibleForTesting
 internal const val PHRASE_ID_ARG = "phraseId"

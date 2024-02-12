@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.jbm.phrase.data.local.dao.PhraseDao
 import com.jbm.phrase.data.local.dao.WidgetDao
+import com.jbm.phrase.data.local.dao.WidgetStyleDao
 import com.jbm.phrase.data.local.database.MainDatabase
 import dagger.Module
 import dagger.Provides
@@ -33,5 +34,10 @@ class DatabaseModule {
     @Provides
     fun provideWidgetDao(db: MainDatabase): WidgetDao {
         return db.widgetDao()
+    }
+
+    @Provides
+    fun provideWidgetStyleDao(db: MainDatabase): WidgetStyleDao {
+        return db.widgetStyleDao()
     }
 }

@@ -18,6 +18,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -101,14 +102,14 @@ private fun HomeScreen(
         HomeUiState.Loading -> {
             CircularProgressIndicator(
                 modifier = Modifier.width(64.dp),
-                color = MaterialTheme.colorScheme.secondary,
-                trackColor = MaterialTheme.colorScheme.surfaceVariant
+                color = MaterialTheme.colorScheme.secondary
             )
         }
     }
 
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PhraseInput(
     onPhraseInputChanged: (String) -> Unit,
@@ -116,9 +117,9 @@ private fun PhraseInput(
     phraseInput: String
 ) {
     val focusRequester = remember { FocusRequester() }
-    
+
     TextField(
-        colors = TextFieldDefaults.colors(
+        colors = TextFieldDefaults.textFieldColors(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent,
@@ -205,7 +206,8 @@ fun PhraseListItem(
                 .wrapContentHeight()
                 .clickable {
                     onPhraseItemClicked(phraseDomain.id.toString())
-                }
+                },
+            maxLines = 1
         )
     }
 }

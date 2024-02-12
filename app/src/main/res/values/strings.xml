@@ -7,6 +7,16 @@
 
     <!-- Detail -->
 
+    <!-- Widget Configuration -->
+    <string name="widget_configuration_footer_title">Phrase Style</string>
+    <string name="widget_configuration_font">Font</string>
+    <string name="widget_configuration_text_size">Text Size</string>
+    <string name="widget_configuration_text_size_increase_content_desc">Increase Text Size</string>
+    <string name="widget_configuration_text_size_decrease_content_desc">Decrease Text Size</string>
+    <string name="widget_configuration_text_color">Text Color</string>
+    <string name="widget_configuration_background_color">Background Color</string>
+    <string name="widget_configuration_text_color_content_desc">Select Text Color</string>
+
     <!-- Common -->
     <string name="back_botton_content_desc">Navigate back</string>
 

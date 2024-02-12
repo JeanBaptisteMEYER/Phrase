@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.jbm.phrase.navigation.PhraseNavHost
 import com.jbm.phrase.ui.theme.PhraseTheme
-import com.jbm.phrase.ui.widget.singleline.SingleLineWidget
+import com.jbm.phrase.ui.widget.glancesingleline.SingleLineWidget
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

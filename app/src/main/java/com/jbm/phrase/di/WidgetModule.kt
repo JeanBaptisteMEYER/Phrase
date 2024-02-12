@@ -1,6 +1,6 @@
 package com.jbm.phrase.di
 
-import com.jbm.phrase.ui.widget.singleline.SingleLineWidgetViewModel
+import com.jbm.phrase.ui.widget.glancesingleline.SingleLineWidgetViewModel
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent

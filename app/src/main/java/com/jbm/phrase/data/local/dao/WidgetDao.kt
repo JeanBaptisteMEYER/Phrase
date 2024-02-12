@@ -19,5 +19,4 @@ interface WidgetDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertWidget(widgetEntity: WidgetEntity): Long
-
 }
