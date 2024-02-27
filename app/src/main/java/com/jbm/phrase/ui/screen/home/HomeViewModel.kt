@@ -3,7 +3,7 @@ package com.jbm.phrase.ui.screen.home
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbm.phrase.domain.repository.PhraseRepository
+import com.jbm.module.core.data.repository.PhraseRepository
 import com.jbm.phrase.extention.trimEmptyLines
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

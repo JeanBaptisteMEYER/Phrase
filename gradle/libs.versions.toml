@@ -11,7 +11,7 @@ gson = "2.10.1"
 androidxGlance = "1.0.0"
 room = "2.6.1"
 dagger = "2.50"
-androidxHilt = "1.1.0"
+androidxHilt = "1.2.0"
 junit = "4.13.2"
 androidxTestExt = "1.1.5"
 androidxTestEspresso = "3.5.1"
@@ -57,3 +57,4 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroid" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }

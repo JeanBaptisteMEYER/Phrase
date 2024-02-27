@@ -3,7 +3,7 @@ package com.jbm.phrase.ui.widget.glancesingleline
 import android.graphics.Typeface
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbm.phrase.domain.usecase.GetPhraseByWidgetIdUseCase
+import com.jbm.module.core.domain.GetPhraseByWidgetIdUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

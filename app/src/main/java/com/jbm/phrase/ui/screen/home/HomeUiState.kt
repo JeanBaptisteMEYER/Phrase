@@ -1,6 +1,6 @@
 package com.jbm.phrase.ui.screen.home
 
-import com.jbm.phrase.domain.model.PhraseDomain
+import com.jbm.module.core.data.model.PhraseDomain
 
 sealed interface HomeUiState {
     data object Loading : HomeUiState

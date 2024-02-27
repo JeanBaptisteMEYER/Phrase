@@ -1,6 +1,6 @@
 package com.jbm.phrase.ui.screen.detail
 
-import com.jbm.phrase.domain.model.PhraseDomain
+import com.jbm.module.core.data.model.PhraseDomain
 
 sealed interface DetailUiState {
     data object Loading : DetailUiState

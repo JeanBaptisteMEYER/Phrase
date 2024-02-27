@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Phrase"
 include(":app")
+include(":core")

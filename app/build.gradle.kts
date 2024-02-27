@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
-
-    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -56,12 +54,8 @@ android {
     }
 }
 
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
+    implementation(project(":core"))
 
     // Androidx
     implementation(libs.androidx.core.ktx)
@@ -79,21 +73,13 @@ dependencies {
     implementation(libs.androidx.compose.uiTextGoogleFonts)
     compileOnly(platform(libs.androidx.compose.bom))
 
-    // Tools
-    implementation(libs.google.gson)
-
     // Widget with Glance
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
 
-    // Room DB
-    implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
-
     // Data Injection
     implementation(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.compiler)
+    ksp(libs.dagger.hilt.compiler)
     implementation(libs.androidx.hilt.navigationFragment)
     implementation(libs.androidx.hilt.navigationCompose)
 

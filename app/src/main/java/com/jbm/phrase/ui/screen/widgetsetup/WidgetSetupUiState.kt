@@ -1,7 +1,7 @@
 package com.jbm.phrase.ui.screen.widgetsetup
 
 import android.graphics.Color
-import com.jbm.phrase.domain.model.PhraseDomain
+import com.jbm.module.core.data.model.PhraseDomain
 
 sealed interface WidgetSetupUiState {
     data object Loading : WidgetSetupUiState

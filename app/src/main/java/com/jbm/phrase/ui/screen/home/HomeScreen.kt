@@ -42,8 +42,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.jbm.module.core.data.model.PhraseDomain
 import com.jbm.phrase.R
-import com.jbm.phrase.domain.model.PhraseDomain
 import java.util.Date
 
 @Composable

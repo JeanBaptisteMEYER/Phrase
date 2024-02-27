@@ -4,9 +4,9 @@ import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jbm.phrase.domain.repository.AssetRepository
-import com.jbm.phrase.domain.repository.PhraseRepository
-import com.jbm.phrase.domain.repository.WidgetRepository
+import com.jbm.module.core.data.repository.AssetRepository
+import com.jbm.module.core.data.repository.PhraseRepository
+import com.jbm.module.core.data.repository.WidgetRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
