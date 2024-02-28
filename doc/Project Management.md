@@ -1,7 +1,6 @@
 # Project Management
 
 ### TODO
-- Unit Testing
 - XML widget
 - Phrase folder and managment
 - Phrase suggestion from json file
@@ -12,10 +11,13 @@
 
 
 ### IN PROGRESS
-- Widget configurable
+- Unit Testing
 
 
 ### DONE
+- Multimodule App
+- Library dependency
+- Widget configuration
 - Simple widget
 - Detail View
 - Home View
